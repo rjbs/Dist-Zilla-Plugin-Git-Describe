@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::PkgGitDesc;
+package Dist::Zilla::Plugin::Git::Describe;
 # ABSTRACT: add a $VERSION to your packages
 use Moose;
 with(
@@ -15,7 +15,7 @@ use namespace::autoclean;
 
 in dist.ini
 
-  [PkgGitDesc]
+  [Git::Describe]
 
 =head1 DESCRIPTION
 
