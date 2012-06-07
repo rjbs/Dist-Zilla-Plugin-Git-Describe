@@ -7,6 +7,8 @@ with(
 );
 
 use Git::Wrapper;
+use Try::Tiny;
+
 use namespace::autoclean;
 
 =head1 SYNOPSIS
@@ -40,7 +42,16 @@ sub munge_files {
   return unless my $package_stmts = $document->find('PPI::Statement::Package');
 
   my $git  = Git::Wrapper->new( $self->zilla->root );
-  my $desc = $git->describe({ long => 1 });
+  my @lines = try {
+    $git->describe({ long => 1 });
+  } catch {
+    die $_ unless /cannot describe anything/;
+    my $line  = ($git->show_ref({ head => 0 }))[0];
+    my ($sha) = split q{ }, $line;
+    return $sha;
+  };
+
+  my $desc = $lines[0];
 
   my %seen_pkg;
 
@@ -57,10 +68,10 @@ sub munge_files {
       next;
     }
 
-    my $perl = "# $desc\n";
+    my $perl = "# git description: $desc\n";
 
     my $version_doc = PPI::Document->new(\$perl);
-    my @children = $version_doc->schildren;
+    my @children = $version_doc->children;
 
     $self->log_debug([
       'adding git description comment to %s in %s',
