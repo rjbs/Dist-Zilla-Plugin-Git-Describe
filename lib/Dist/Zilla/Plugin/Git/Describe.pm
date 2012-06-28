@@ -45,7 +45,9 @@ sub munge_files {
   my @lines = try {
     $git->describe({ long => 1 });
   } catch {
-    die $_ unless /cannot describe anything/;
+    die $_ unless /cannot describe anything/
+               || /No tags can describe/
+               || /No annotated tags can describe/; # this case is unlikely
     my $line  = ($git->show_ref({ head => 0 }))[0];
     my ($sha) = split q{ }, $line;
     return $sha;
