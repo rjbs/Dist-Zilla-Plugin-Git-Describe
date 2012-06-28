@@ -42,16 +42,7 @@ sub munge_files {
   return unless my $package_stmts = $document->find('PPI::Statement::Package');
 
   my $git  = Git::Wrapper->new( $self->zilla->root );
-  my @lines = try {
-    $git->describe({ long => 1 });
-  } catch {
-    die $_ unless /cannot describe anything/
-               || /No tags can describe/
-               || /No annotated tags can describe/; # this case is unlikely
-    my $line  = ($git->show_ref({ head => 0 }))[0];
-    my ($sha) = split q{ }, $line;
-    return $sha;
-  };
+  my @lines = $git->describe({ long => 1, always => 1 });
 
   my $desc = $lines[0];
 
