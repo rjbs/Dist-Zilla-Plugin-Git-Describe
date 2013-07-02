@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.003     2013-07-01 22:32:59 America/New_York
+          release with a compile test to stem the tide of UNKNOWN test reports
+
 0.002     2012-06-28 16:09:04 America/New_York
           cope with the output from 'git describe' when there are tags, but
           none can describe the head; just use git describe --always --long
