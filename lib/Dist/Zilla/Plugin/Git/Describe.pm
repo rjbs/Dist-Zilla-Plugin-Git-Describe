@@ -8,6 +8,7 @@ with(
 
 use Git::Wrapper;
 use Try::Tiny;
+use List::Util 1.33 'all';
 
 use namespace::autoclean;
 
@@ -25,7 +26,19 @@ things in a package variable, or to provide an option.
 
 It inserts this in the same place that PkgVersion would insert a version.
 
+=attr on_package_line
+
+If true, then the comment is added to the same line as the package declaration.
+Otherwise, it is added on its own line, with an additional blank line following it.
+Defaults to false.
+
 =cut
+
+has on_package_line => (
+  is  => 'ro',
+  isa => 'Bool',
+  default => 0,
+);
 
 sub munge_files {
   my ($self) = @_;
@@ -56,7 +69,9 @@ sub munge_files {
       next;
     }
 
-    my $perl = "# git description: $desc\n";
+    my $perl = $self->on_package_line
+        ? " # git description: $desc"
+        : "\n# git description: $desc\n";
 
     my $version_doc = PPI::Document->new(\$perl);
     my @children = $version_doc->children;
@@ -68,8 +83,7 @@ sub munge_files {
     ]);
 
     Carp::carp("error inserting git description in " . $file->name)
-      unless $stmt->insert_after($children[0]->clone)
-      and    $stmt->insert_after( PPI::Token::Whitespace->new("\n") );
+      unless all { $stmt->insert_after($_->clone) } reverse @children;
   }
 
   $self->save_ppi_document_to_file($document, $file);
