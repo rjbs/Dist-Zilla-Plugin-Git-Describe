@@ -34,11 +34,6 @@ sub munge_files {
 
   my $document = $self->ppi_document_for_file($file);
 
-  if ($self->document_assigns_to_variable($document, '$VERSION')) {
-    $self->log([ 'skipping %s: assigns to $VERSION', $file->name ]);
-    return;
-  }
-
   return unless my $package_stmts = $document->find('PPI::Statement::Package');
 
   my $git  = Git::Wrapper->new( $self->zilla->root );
