@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.004     2014-12-27 18:52:08-05:00 America/New_York
         - don't die if there's a $VERSION assignment
         - put the comment on the package line, if on_package_line is set
 
