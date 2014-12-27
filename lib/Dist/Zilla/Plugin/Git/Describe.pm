@@ -70,8 +70,8 @@ sub munge_files {
     }
 
     my $perl = $self->on_package_line
-        ? " # git description: $desc"
-        : "\n# git description: $desc\n";
+             ? " # git description: $desc"
+             : "\n# git description: $desc\n";
 
     my $version_doc = PPI::Document->new(\$perl);
     my @children = $version_doc->children;
