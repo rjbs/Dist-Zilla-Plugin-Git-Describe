@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - don't die if there's a $VERSION assignment
+        - put the comment on the package line, if on_package_line is set
 
 0.003     2013-07-01 22:32:59 America/New_York
           release with a compile test to stem the tide of UNKNOWN test reports

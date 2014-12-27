@@ -1,5 +1,6 @@
 package Dist::Zilla::Plugin::Git::Describe;
 # ABSTRACT: add the results of `git describe` (roughly) to your main module
+
 use Moose;
 with(
   'Dist::Zilla::Role::FileMunger',
