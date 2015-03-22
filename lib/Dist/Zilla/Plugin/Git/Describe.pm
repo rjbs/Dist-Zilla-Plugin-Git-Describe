@@ -46,6 +46,7 @@ sub munge_files {
 
   my $file = $self->zilla->main_module;
 
+  require PPI::Document;
   my $document = $self->ppi_document_for_file($file);
 
   return unless my $package_stmts = $document->find('PPI::Statement::Package');
