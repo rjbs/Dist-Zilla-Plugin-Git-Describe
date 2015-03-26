@@ -2,6 +2,10 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.005     2015-03-26 18:29:45-04:00 America/New_York
+        - make sure PPI::Document is loaded before using it (thanks, Karen
+          Etheridge!)
+
 0.004     2014-12-27 18:52:08-05:00 America/New_York
         - don't die if there's a $VERSION assignment
         - put the comment on the package line, if on_package_line is set
