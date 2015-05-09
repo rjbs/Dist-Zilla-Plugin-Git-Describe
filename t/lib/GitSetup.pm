@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 package GitSetup;
 
 # (stolen from [Git::Contributors])
