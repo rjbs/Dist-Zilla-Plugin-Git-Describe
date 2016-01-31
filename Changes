@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - improved testing of git directories under MSWin32
 
 0.006     2015-08-01 22:01:34-04:00 America/New_York
         - remove fatal warnings from the test suite (future proofing)
