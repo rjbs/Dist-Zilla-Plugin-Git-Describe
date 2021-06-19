@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - update author contact info
+        - set perl-support level
 
 0.007     2016-07-14 22:26:07-04:00 America/New_York
         - improved testing of git directories under MSWin32
