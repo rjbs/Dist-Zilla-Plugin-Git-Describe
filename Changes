@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - improve isolation of test git process (thanks, Mikko Koivunalho!)
         - update author contact info
         - set perl-support level
 
