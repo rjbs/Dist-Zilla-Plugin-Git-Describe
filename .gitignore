@@ -1,2 +1,3 @@
 Dist-Zilla-Plugin-Git-Describe-*
 .build
+.gitnxtver_cache
