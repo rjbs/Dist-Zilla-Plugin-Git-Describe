@@ -8,7 +8,6 @@ with(
 );
 
 use Git::Wrapper;
-use Try::Tiny;
 use List::Util 1.33 'all';
 
 use namespace::autoclean;

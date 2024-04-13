@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - remove unneeded dependency on Try::Tiny
 
 0.008     2022-12-31 17:08:07-05:00 America/New_York
         - improve isolation of test git process (thanks, Mikko Koivunalho!)
